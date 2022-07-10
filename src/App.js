@@ -1,33 +1,22 @@
 import React from "react";
+import { HashRouter, Route, Routes } from "react-router-dom";
 
-import SinglePagePDFViewer from "./components/pdf/single-page";
-import AllPagesPDFViewer from "./components/pdf/all-pages";
-import { sampleBase64pdf } from "./sampleBase64pdf";
 /* This is required only if the project file is located 
 inside the app. Otherwise you can use the external link of the pdf file*/
-import samplePDF from "./CH3.pdf";
 
 import "./styles.css";
+import Login from "./pages/Login";
+import Pdf from "./pages/Pdf";
 
 export default function App() {
   return (
     <div className="App">
-      <h4>Single Page</h4>
-      <SinglePagePDFViewer pdf={samplePDF} />
-
-      <hr />
-
-      <h4>All Pages</h4>
-      <div className="all-page-container">
-        <AllPagesPDFViewer pdf={samplePDF} />
-      </div>
-
-      <hr />
-
-      <h4>Base 64 Single Page</h4>
-      <SinglePagePDFViewer pdf={sampleBase64pdf} />
-
-      <hr />
+      <HashRouter>
+        <Routes>
+          <Route exact path="/" element={<Login />} />
+          <Route exact path="/pdf" element={<Pdf />} />
+        </Routes>
+      </HashRouter>
     </div>
   );
 }
